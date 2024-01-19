@@ -16,6 +16,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.borutoapp.R
+import com.example.borutoapp.ui.theme.LARGE_PADDING
 import com.example.borutoapp.ui.theme.topAppBarBackgroundColor
 import com.example.borutoapp.ui.theme.topAppBarContentColor
 
@@ -32,7 +33,7 @@ fun HomeTopBar(onSearchClicked: () -> Unit) {
         elevation = 0.dp,
         modifier = Modifier.background(
             color = MaterialTheme.colors.topAppBarBackgroundColor,
-            shape = RoundedCornerShape(0.dp, 0.dp, 32.dp, 32.dp),
+            shape = RoundedCornerShape(0.dp, 0.dp, LARGE_PADDING, LARGE_PADDING),
         ).padding(horizontal = 4.dp),
 
         actions = {
