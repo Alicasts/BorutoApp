@@ -1,6 +1,7 @@
 package com.example.borutoapp.presentation.common
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -32,7 +33,6 @@ import com.example.borutoapp.domain.model.Hero
 import com.example.borutoapp.navigation.Screen
 import com.example.borutoapp.presentation.components.RatingWidget
 import com.example.borutoapp.presentation.components.ShimmerEffect
-//import com.example.borutoapp.presentation.components.ShimmerEffect
 import com.example.borutoapp.ui.theme.*
 import com.example.borutoapp.util.Constants.BASE_URL
 
@@ -77,15 +77,12 @@ fun handlePagingResult(
 
         return when {
             loadState.refresh is LoadState.Loading -> {
+                Log.d("BATATA","EAEAEAEAE")
                 ShimmerEffect()
                 false
             }
             error != null -> {
 //                EmptyScreen(error = error, heroes = heroes)
-                false
-            }
-            heroes.itemCount < 1 -> {
-//                EmptyScreen()
                 false
             }
             else -> true
