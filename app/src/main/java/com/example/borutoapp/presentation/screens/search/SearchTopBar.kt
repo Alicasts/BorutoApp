@@ -1,7 +1,9 @@
 package com.example.borutoapp.presentation.screens.search
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -16,7 +18,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.borutoapp.R
+import com.example.borutoapp.ui.theme.LARGE_PADDING
 import com.example.borutoapp.ui.theme.TOP_APP_BAR_HEIGHT
 import com.example.borutoapp.ui.theme.topAppBarBackgroundColor
 import com.example.borutoapp.ui.theme.topAppBarContentColor
@@ -47,6 +51,7 @@ fun SearchWidget(
         modifier = Modifier
             .fillMaxWidth()
             .height(TOP_APP_BAR_HEIGHT),
+        shape = RoundedCornerShape(0.dp, 0.dp, LARGE_PADDING, LARGE_PADDING),
         elevation = AppBarDefaults.TopAppBarElevation,
         color = MaterialTheme.colors.topAppBarBackgroundColor
     ) {
