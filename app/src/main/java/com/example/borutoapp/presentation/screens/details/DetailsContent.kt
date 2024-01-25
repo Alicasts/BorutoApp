@@ -17,13 +17,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import coil.annotation.ExperimentalCoilApi
+import coil.compose.AsyncImage
 import coil.compose.rememberImagePainter
+import coil.request.ImageRequest
 import com.example.borutoapp.R
 import com.example.borutoapp.domain.model.Hero
 import com.example.borutoapp.presentation.components.InfoBox
@@ -53,9 +56,12 @@ fun DetailsContent(
     }
 
     val systemUiController = rememberSystemUiController()
-    systemUiController.setStatusBarColor(
-        color = Color(parseColor(darkVibrant))
-    )
+
+    SideEffect {
+        systemUiController.setStatusBarColor(
+            color = Color(parseColor(darkVibrant))
+        )
+    }
 
     val scaffoldState = rememberBottomSheetScaffoldState(
         bottomSheetState = rememberBottomSheetState(initialValue = Expanded)
@@ -214,22 +220,34 @@ fun BackgroundContent(
     onCloseClicked: () -> Unit
 ) {
     val imageUrl = "$BASE_URL${heroImage}"
-    val painter = rememberImagePainter(imageUrl) {
-        error(R.drawable.ic_placeholder)
-    }
+//    val painter = rememberImagePainter(imageUrl) {
+//        error(R.drawable.ic_placeholder)
+//    }
 
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(backgroundColor)
     ) {
-        Image(
+//        Image(
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .fillMaxHeight(fraction = imageFraction + MIN_BACKGROUND_IMAGE_HEIGHT)
+//                .align(Alignment.TopStart),
+//            painter = painter,
+//            contentDescription = stringResource(id = R.string.hero_image),
+//            contentScale = ContentScale.Crop
+//        )
+        AsyncImage(
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight(fraction = imageFraction + MIN_BACKGROUND_IMAGE_HEIGHT)
                 .align(Alignment.TopStart),
-            painter = painter,
-            contentDescription = stringResource(id = R.string.hero_image),
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(data = imageUrl)
+                .error(drawableResId = R.drawable.ic_placeholder)
+                .build(),
+            contentDescription = stringResource(R.string.hero_image),
             contentScale = ContentScale.Crop
         )
         Row(
